@@ -1,5 +1,5 @@
 class SongsController < ApplicationController
-  before_action :set_song, only: [:show, :edit, :update, :destroy]
+  before_action :set_song, only: [:show, :edit, :update, :destroy, :add_to_playlist]
 
   # GET /songs
   # GET /songs.json
@@ -10,6 +10,7 @@ class SongsController < ApplicationController
   # GET /songs/1
   # GET /songs/1.json
   def show
+    @playlists = Playlist.all
     respond_to do |format|
       format.html
       format.pdf do
@@ -68,6 +69,11 @@ class SongsController < ApplicationController
       format.html { redirect_to songs_url }
       format.json { head :no_content }
     end
+  end
+
+  def add_to_playlist
+    PlaylistSong.create(song_id: @song.id, playlist_id: params[:playlist][:id])
+    render nothing: true
   end
 
   private

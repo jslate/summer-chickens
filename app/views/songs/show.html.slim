@@ -22,6 +22,14 @@ table
     td
       pre = @song.lead_sheet
 
+h2 Add to a Playlist
+
+ul
+- @playlists.each do |playlist|
+  li
+    = link_to playlist.name, add_to_playlist_song_path(@song, playlist: {id: playlist.id}), method: :post, remote: true
+
+
 = link_to 'Edit', edit_song_path(@song)
 | |
 = link_to 'Back', songs_path
