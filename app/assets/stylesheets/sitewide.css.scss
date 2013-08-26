@@ -1,0 +1,79 @@
+
+
+div.container {
+  @include outer-container;
+  @include linear-gradient(#ffffdd, #ffffaa);
+  position: relative;
+  box-shadow: 3px 3px 12px rgba(51, 49, 50, 0.95);
+}
+
+body {
+  font-family: 'Helvetica', sans-serif;
+  background-color: #4C8199;
+}
+
+.menu {
+  @include span-columns(12);
+  @include linear-gradient(#DD3C0A, #9E4D2E);
+  padding: 10px;
+  color: #cccccc;
+  a { color: white; text-decoration: none; }
+  .item { margin: 0 10px; display: inline-block; }
+}
+
+.content {
+  padding: 20px 20px 120px 20px;
+  @include span-columns(12);
+}
+
+.flash-container {
+  @include span-columns(12);
+  .notice, .warning {
+    @include span-columns(6);
+    color: #fff;
+    border-radius: 3px;
+    margin: 20px 0;
+    padding: 10px;
+    a { color: blue; text-decoration: none; }
+  }
+  .notice { background-color: #4F991E; }
+  .warning { background-color: #928704; }
+}
+
+.controls {
+  margin: 20px 0;
+  .button {
+    @include button;
+  }
+}
+
+form {
+  @include span-columns(8);
+}
+
+h1 {
+  font-size: 1.7em;
+}
+
+.login-status {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  color: white;
+  a { color: white; }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  th { text-align: left; }
+  th, td { border: 1px solid black; padding: 5px; vertical-align: top; }
+}
+
+textarea {
+  height: 100px;
+}
+
+pre {
+  margin: 0;
+}

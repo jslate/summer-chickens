@@ -1,0 +1,21 @@
+@import 'bourbon';
+
+form.formtastic {
+  .link_action a, .input_action input {
+    @include button;
+  }
+  li.input {
+    list-style: none;
+  }
+  fieldset ol li.fl {
+    display: inline; margin-right: 10px;
+    .label {
+      display: none;
+    }
+    &:last-child { @include clearfix; }
+  }
+  #event_start_hour_input .label { display: inline-block; }
+  #event_location_input {
+    @include clearfix;
+  }
+}

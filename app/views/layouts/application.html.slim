@@ -1,0 +1,31 @@
+doctype html
+html
+  head
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"
+    title = (content_for?(:title) ? content_for(:title) + ' | ' : '') + 'Summer Chickens'
+
+    = csrf_meta_tags
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+
+  body
+
+    .container
+
+      .menu
+        .item = link_to_unless_current 'Songs', songs_path
+
+      .content
+        .login-status
+          - if false && current_user
+            /.logged-in Signed in as #{current_user.name} #{link_to "Sign out", signout_path}
+          - else
+            .not-logged-in
+            /= link_to "Sign in with Twitter", "/auth/twitter"
+
+        .flash-container
+          - flash.each do |name, msg|
+            div class="#{name}" = msg
+
+        = yield

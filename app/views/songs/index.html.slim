@@ -1,0 +1,27 @@
+h1 Songs
+table
+  thead
+    tr
+      th Title
+      th Composer
+      th Artist
+      th Key
+      th Tempo
+      th
+      th
+      th
+      th
+  tbody
+    - @songs.each do |song|
+      tr
+        td = song.title
+        td = song.composer
+        td = song.artist
+        td = song.key
+        td = song.tempo
+        td = link_to 'HTML', song
+        td = link_to 'PDF', song_path(song, format: :pdf)
+        td = link_to 'Edit', edit_song_path(song)
+        td = link_to 'Delete', song, method: :delete, data: {confirm: 'Are you sure?'}
+br/
+= link_to 'New Song', new_song_path

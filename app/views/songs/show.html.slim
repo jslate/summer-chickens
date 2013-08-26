@@ -1,0 +1,30 @@
+table
+  tr
+    th Title:
+    td = @song.title
+  tr
+    th Composer:
+    td = @song.composer
+  tr
+    th Artist:
+    td = @song.artist
+  tr
+    th Key:
+    td = @song.key
+  tr
+    th Tempo:
+    td = @song.tempo
+  tr
+    th Notes:
+    td = @song.notes
+  tr
+    th Lead sheet:
+    td
+      pre = @song.lead_sheet
+
+= link_to 'Edit', edit_song_path(@song)
+| |
+= link_to 'Back', songs_path
+| |
+= link_to 'PDF', song_path(@song, format: :pdf)
+
