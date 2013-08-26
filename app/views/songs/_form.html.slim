@@ -1,7 +1,6 @@
-= semantic_form_for :song, url: songs_path do |f|
-  = f.inputs :title, :composer, :artist, :key, :tempo, :notes
-  = f.input :lead_sheet, as: :text
-  = f.actions
-    = f.action :submit, label: 'Save'
-    = f.action :cancel, label: 'Cancel'
+= f.inputs :title, :composer, :artist, :key, :tempo, :notes
+= f.input :lead_sheet, as: :text
+= f.actions
+  = f.action :submit, label: 'Save'
+  = f.action :cancel, label: 'Cancel'
 

@@ -1,2 +1,3 @@
 h1 New Song
-= render 'form'
+= semantic_form_for :song, url: songs_path do |f|
+  = render 'form', locals: {f: f}
