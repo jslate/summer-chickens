@@ -1,0 +1,19 @@
+h1 View Playlist
+
+table
+  tr
+    th Name:
+    td = @playlist.name
+
+h2 Songs
+
+ul
+  - @playlist.songs.each do |song|
+    li = song.title
+
+= link_to 'Edit', edit_playlist_path(@playlist)
+| |
+= link_to 'Back', playlists_path
+| |
+= link_to 'PDF', playlist_path(@playlist, format: :pdf)
+
