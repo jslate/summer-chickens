@@ -1,5 +1,5 @@
 class PlaylistsController < ApplicationController
-  before_action :set_playlist, only: [:show, :edit, :update, :destroy]
+  before_action :set_playlist, only: [:show, :edit, :update, :destroy, :add_song]
 
   # GET /playlists
   # GET /playlists.json
@@ -42,6 +42,11 @@ class PlaylistsController < ApplicationController
     redirect_to playlists_path
   end
 
+  def add_song
+    PlaylistSong.create(song_id: playlist_params[:songs], playlist_id: @playlist.id)
+    render json: Song.find(playlist_params[:songs])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_playlist
@@ -50,7 +55,7 @@ class PlaylistsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def playlist_params
-      params.require(:playlist).permit(:name)
+      params.require(:playlist).permit(:name, :songs)
     end
 
 end

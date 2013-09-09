@@ -7,13 +7,17 @@ table
 
 h2 Songs
 
-ul
+ul.playlist-songs
   - @playlist.songs.each do |song|
     li = song.title
 
-= link_to 'Edit', edit_playlist_path(@playlist)
-| |
-= link_to 'Back', playlists_path
-| |
-= link_to 'PDF', playlist_path(@playlist, format: :pdf)
+= semantic_form_for :playlist, url: add_song_playlist_path(@playlist), method: :post, remote: true, html: {id: 'add-song-form'} do |f|
+  = f.input :songs, as: :select, collection: @playlist.available_songs
+  = f.actions do
+    = f.action :submit, :as => :button, label: 'add'
+
+ul.nav
+  li = link_to 'Edit', edit_playlist_path(@playlist)
+  li = link_to 'Back', playlists_path
+  li = link_to 'PDF', playlist_path(@playlist, format: :pdf)
 
