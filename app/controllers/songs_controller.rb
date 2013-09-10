@@ -14,7 +14,7 @@ class SongsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = SongPdf.new(@song)
+        pdf = SongPdf.new([@song])
         send_data pdf.render, filename: "song_#{@song.id}",
                               type: "application/pdf",
                               disposition: "inline"

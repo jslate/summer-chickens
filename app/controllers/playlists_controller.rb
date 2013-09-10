@@ -14,6 +14,12 @@ class PlaylistsController < ApplicationController
   def show
     respond_to do |format|
       format.html
+      format.pdf do
+        pdf = SongPdf.new(@playlist.songs)
+        send_data pdf.render, filename: "playlist_#{@playlist.id}",
+                              type: "application/pdf",
+                              disposition: "inline"
+      end
     end
   end
 

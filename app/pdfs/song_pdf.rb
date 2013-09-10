@@ -1,23 +1,25 @@
 class SongPdf < Prawn::Document
-  def initialize(song)
-    @song = song
+  def initialize(songs)
     super(top_margin: 40)
     font 'Helvetica'
-    title
-    lead_sheet
+    songs.each_with_index do |song, i|
+      title(song)
+      lead_sheet(song)
+      start_new_page unless i == songs.length - 1
+    end
   end
 
-  def title
-    text @song.title, size: 30, style: :bold
+  def title(song)
+    text song.title, size: 30, style: :bold
     bounding_box([400, cursor + 30], width: 400) do
-      text "Written by #{@song.composer}" if @song.composer.present?
-      text "Performed by #{@song.artist}" if @song.artist.present?
+      text "Written by #{song.composer}" if song.composer.present?
+      text "Performed by #{song.artist}" if song.artist.present?
     end
     move_down 40
   end
 
-  def lead_sheet
-    lines = @song.lead_sheet.split(/\n/)
+  def lead_sheet(song)
+    lines = song.lead_sheet.split(/\n/)
     lines.each do |line|
       move_down 40
       x = 0
