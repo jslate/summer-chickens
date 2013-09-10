@@ -9,7 +9,7 @@ h2 Songs
 
 ul.playlist-songs
   - @playlist.songs.each do |song|
-    li = song.title
+    li = "#{song.title} #{link_to 'remove', remove_song_playlist_path(@playlist, song: song.id), remote: true, method: :post, class: 'remove' }".html_safe
 
 = semantic_form_for :playlist, url: add_song_playlist_path(@playlist), method: :post, remote: true, html: {id: 'add-song-form'} do |f|
   = f.input :songs, as: :select, collection: @playlist.available_songs

@@ -1,5 +1,5 @@
 class PlaylistsController < ApplicationController
-  before_action :set_playlist, only: [:show, :edit, :update, :destroy, :add_song]
+  before_action :set_playlist, only: [:show, :edit, :update, :destroy, :add_song, :remove_song]
 
   # GET /playlists
   # GET /playlists.json
@@ -43,8 +43,15 @@ class PlaylistsController < ApplicationController
   end
 
   def add_song
-    PlaylistSong.create(song_id: playlist_params[:songs], playlist_id: @playlist.id)
-    render json: Song.find(playlist_params[:songs])
+    song = Song.find(playlist_params[:songs])
+    @playlist.songs << song
+    render json: {song: {id: song.id, title: song.title}, playlist: @playlist.id}
+  end
+
+  def remove_song
+    song = Song.find(params[:song])
+    @playlist.songs.delete(song)
+    render json: {song: {id: song.id, title: song.title}, playlist: @playlist.id}
   end
 
   private

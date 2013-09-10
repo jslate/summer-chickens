@@ -1,8 +1,9 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
-
 $ ->
   $('#add-song-form').on 'ajax:success', (event, data) ->
-    $('.playlist-songs').append("<li>#{data.song.title}</li>")
+    $('.playlist-songs').append("<li>#{data.song.title} <a href=\"/playlists/#{data.playlist}/remove_song?song=#{data.song.id}\" data-remote=\"true\" data-method=\"post\" class=\"remove\">remove</a></li>")
     $("#add-song-form select option[value=#{data.song.id}]").remove()
+
+  $('.playlist-songs').on 'ajax:success', 'a.remove', (event, data) ->
+    $(event.currentTarget).closest('li').remove()
+    $('#add-song-form select').append("<option value=\"#{data.song.id}\">#{data.song.title}</a>")
+
