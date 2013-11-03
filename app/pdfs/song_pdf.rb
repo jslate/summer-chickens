@@ -10,7 +10,7 @@ class SongPdf < Prawn::Document
   end
 
   def title(song)
-    text song.title, size: 30, style: :bold
+    text song.title, size: 25, style: :bold
     bounding_box([400, cursor + 30], width: 400) do
       text "Written by #{song.composer}" if song.composer.present?
       text "Performed by #{song.artist}" if song.artist.present?

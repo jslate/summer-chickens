@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20130826160754) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "playlist_songs", force: true do |t|
     t.integer  "song_id",     null: false
     t.integer  "playlist_id", null: false
