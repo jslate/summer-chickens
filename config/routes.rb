@@ -1,5 +1,8 @@
 SummerChickens::Application.routes.draw do
-  root :to => 'songs#index'
+  root :to => 'home#index'
+
+  resource :home, only: [:index]
+
   resources :playlists do
     member do
       post :add_song
