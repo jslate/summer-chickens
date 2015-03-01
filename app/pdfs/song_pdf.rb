@@ -25,7 +25,7 @@ class SongPdf < Prawn::Document
   def lead_sheet(song)
     lines = song.lead_sheet.split(/\n/)
     lines.each_with_index do |line, index|
-      start_new_page if index > 0 && index % 24 == 0
+      start_new_page if index > 0 && index % 30 == 0
       move_down(line.blank? ? 10 : 25)
       x = 0
       y_pos = y
